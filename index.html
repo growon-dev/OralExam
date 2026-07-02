@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>구술 쪽지</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="nav">
+    <div class="brand"><span class="dot"></span>구술 쪽지</div>
+    <button class="notebook" id="savedBtn">오답노트 <span class="cnt" id="savedCount">0</span></button>
+  </div>
+
+  <div class="wrap">
+    <header>
+      <div class="eyebrow">생활스포츠지도사 2급 · 보디빌딩</div>
+      <h1>구술 쪽지 뽑기</h1>
+      <div class="sub">11일동안 하루에 24문제만 공부해봐요!! 화이팅!!</div>
+    </header>
+
+    <div class="days" id="days"></div>
+
+    <div class="prog">
+      <div class="readout"><span id="plabel">Day 1 · 0 / 24</span><span id="ppct">0%</span></div>
+      <div class="bar"><i id="pbar"></i></div>
+    </div>
+
+    <div class="grid" id="board"><div class="loading">문제를 불러오는 중…</div></div>
+
+    <div class="controls" id="controls">
+      <button class="btn btn-secondary" id="back" disabled>이전 문제</button>
+      <button class="btn btn-primary" id="draw">다음 4문제</button>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <div class="modal">
+      <div class="mhead"><div class="mtitle">오답노트</div>
+        <button class="mclose" id="mclose">✕</button></div>
+      <div id="savedList"></div>
+    </div>
+  </div>
+
+<script src="app.js"></script>
+</body>
+</html>
