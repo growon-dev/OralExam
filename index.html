@@ -3,44 +3,73 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>구술 쪽지</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>코치덱스 · 보디빌딩 실기·구술</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="nav">
-    <div class="brand"><span class="dot"></span>구술 쪽지</div>
-    <button class="notebook" id="savedBtn">오답노트 <span class="cnt" id="savedCount">0</span></button>
-  </div>
-
-  <div class="wrap">
-    <header>
-      <div class="eyebrow">생활스포츠지도사 2급 · 보디빌딩</div>
-      <h1>구술 쪽지 뽑기</h1>
-      <div class="sub">11일동안 하루에 24문제만 공부해봐요!! 화이팅!!</div>
-    </header>
-
-    <div class="days" id="days"></div>
-
-    <div class="prog">
-      <div class="readout"><span id="plabel">Day 1 · 0 / 24</span><span id="ppct">0%</span></div>
-      <div class="bar"><i id="pbar"></i></div>
+  <!-- 상단 탭 -->
+  <nav class="tabbar">
+    <div class="tabbar-inner">
+      <button class="tab tab-oral active" data-tab="oral">
+        <i class="fa-solid fa-comment-dots"></i> 구술 쪽지
+      </button>
+      <button class="tab tab-practice" data-tab="practice">
+        <i class="fa-solid fa-dumbbell"></i> 실기 쪽지
+      </button>
+      <button class="notebook" id="savedBtn" title="오답노트">
+        <i class="fa-regular fa-star"></i> <span class="cnt" id="savedCount">0</span>
+      </button>
     </div>
+  </nav>
 
-    <div class="grid" id="board"><div class="loading">문제를 불러오는 중…</div></div>
-
-    <div class="controls" id="controls">
-      <button class="btn btn-secondary" id="back" disabled>이전 문제</button>
-      <button class="btn btn-primary" id="draw">다음 4문제</button>
+  <!-- ===== 구술 뷰 ===== -->
+  <section class="view" id="view-oral">
+    <div class="wrap">
+      <header>
+        <div class="eyebrow">생활스포츠지도사 2급 · 보디빌딩 <span class="cycle" id="cycleLabel">1회차</span></div>
+        <h1>구술 쪽지 뽑기</h1>
+        <div class="sub">11일 동안 하루에 24문제만 공부해봐요!! 화이팅!!</div>
+      </header>
+      <div class="days" id="days"></div>
+      <div class="prog">
+        <div class="readout"><span id="oralLabel">Day 1 · 0 / 24</span><span id="oralPct">0%</span></div>
+        <div class="bar"><i id="oralBar"></i></div>
+      </div>
+      <div class="grid" id="oralBoard"><div class="loading">문제를 불러오는 중…</div></div>
+      <div class="controls" id="oralControls">
+        <button class="btn btn-ghost" id="oralBack" disabled>이전 문제</button>
+        <button class="btn btn-solid" id="oralDraw">다음 4문제</button>
+      </div>
     </div>
-  </div>
+  </section>
 
+  <!-- ===== 실기 뷰 ===== -->
+  <section class="view" id="view-practice" hidden>
+    <div class="wrap">
+      <header>
+        <div class="eyebrow">생활스포츠지도사 2급 · 보디빌딩</div>
+        <h1>실기 쪽지 뽑기</h1>
+        <div class="sub">한 세트 = 동작 3 + 복합세트 1 + 포징 1. 51개 동작을 다 돌아요.</div>
+      </header>
+      <div class="prog">
+        <div class="readout"><span id="pracLabel">동작 0 / 51</span><span id="pracPct">0%</span></div>
+        <div class="bar bar-red"><i id="pracBar"></i></div>
+      </div>
+      <div class="grid single" id="pracBoard"></div>
+      <div class="controls">
+        <button class="btn btn-ghost" id="pracReset">전체 초기화</button>
+        <button class="btn btn-solid solid-red" id="pracDraw">세트 추첨</button>
+      </div>
+      <div id="pracPast"></div>
+    </div>
+  </section>
+
+  <!-- 오답노트 모달 -->
   <div class="overlay" id="overlay">
     <div class="modal">
       <div class="mhead"><div class="mtitle">오답노트</div>
-        <button class="mclose" id="mclose">✕</button></div>
+        <button class="mclose" id="mclose"><i class="fa-solid fa-xmark"></i></button></div>
       <div id="savedList"></div>
     </div>
   </div>
